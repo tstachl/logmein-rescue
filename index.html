@@ -1,0 +1,434 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>LogMeIn::Rescue by tstachl</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>LogMeIn::Rescue</h1>
+        <p>LogMeIn Rescue API client</p>
+
+        <p class="view"><a href="https://github.com/tstachl/logmein-rescue">View the Project on GitHub <small>tstachl/logmein-rescue</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/tstachl/logmein-rescue/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tstachl/logmein-rescue/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tstachl/logmein-rescue">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="logmeinrescue" class="anchor" href="#logmeinrescue" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LogMeIn::Rescue</h1>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>The LogMeIn Rescue API provides an interface to third parties for communicating with an application. Use this API to customize how Rescue integrates with your other support applications.</p>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>logmein-rescue<span class="pl-pds">'</span></span></pre></div>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install logmein-rescue
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="authentication" class="anchor" href="#authentication" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authentication</h3>
+
+<p>The LogMeIn API supports two forms of authentication. When authenticating it defaults to <code>:auth_code</code> so in case you want to store session cookies please make sure you set the type when you call the <code>login</code> method.</p>
+
+<h4>
+<a id="login" class="anchor" href="#login" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Login</h4>
+
+<p>The <code>login</code> method will create a session cookie. This cookie will expire after 20 minutes of inactivity.</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Authenticate</span>
+client <span class="pl-k">=</span> <span class="pl-c1">LogMeIn</span>::<span class="pl-c1">Rescue</span>.login(email, password, <span class="pl-c1">type:</span> <span class="pl-c1">:cookie</span>)
+cookie <span class="pl-k">=</span> client.cookie
+
+<span class="pl-c"># Reuse the Cookie</span>
+client <span class="pl-k">=</span> <span class="pl-c1">LogMeIn</span>::<span class="pl-c1">Rescue</span>.cookie(cookie)</pre></div>
+
+<h4>
+<a id="auth-code" class="anchor" href="#auth-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Auth code</h4>
+
+<p>If your application can't work with session cookies you can also create a non-expiring auth code.</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Authenticate</span>
+client <span class="pl-k">=</span> <span class="pl-c1">LogMeIn</span>::<span class="pl-c1">Rescue</span>.login(email, password)
+code   <span class="pl-k">=</span> client.auth_code
+
+<span class="pl-c"># Reuse the auth code</span>
+client <span class="pl-k">=</span> <span class="pl-c1">LogMeIn</span>::<span class="pl-c1">Rescue</span>.auth_code(code)</pre></div>
+
+<h3>
+<a id="account-information" class="anchor" href="#account-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Account Information</h3>
+
+<p>These methods provide basic information on an account and allow the user to log in and out of an account.</p>
+
+<h4>
+<a id="login-1" class="anchor" href="#login-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>login</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="logout" class="anchor" href="#logout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>logout</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="account" class="anchor" href="#account" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>account</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="hierarchy" class="anchor" href="#hierarchy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>hierarchy</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="hierarchy_v2" class="anchor" href="#hierarchy_v2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>hierarchy_v2</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h3>
+<a id="account-management" class="anchor" href="#account-management" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Account Management</h3>
+
+<p>With the account management methods, you can create new Rescue users and groups, and assign Rescue users to channels.</p>
+
+<p>Note: The <code>auth_code</code> parameter enables you to use these methods without logging in to Rescue.</p>
+
+<h4>
+<a id="create_user" class="anchor" href="#create_user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>create_user</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="create_users" class="anchor" href="#create_users" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>create_users</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_user" class="anchor" href="#get_user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_user</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_user" class="anchor" href="#set_user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_user</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_user_status" class="anchor" href="#set_user_status" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_user_status</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="create_group" class="anchor" href="#create_group" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>create_group</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_group" class="anchor" href="#get_group" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_group</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_group" class="anchor" href="#set_group" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_group</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="move_node" class="anchor" href="#move_node" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>move_node</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="delete_node" class="anchor" href="#delete_node" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>delete_node</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="assign_channel" class="anchor" href="#assign_channel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>assign_channel</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="unassign_channel" class="anchor" href="#unassign_channel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>unassign_channel</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h3>
+<a id="supporting-crm-systems" class="anchor" href="#supporting-crm-systems" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supporting CRM Systems</h3>
+
+<p>These methods enable you to integrate Rescue into your existing CRM system.</p>
+
+<h4>
+<a id="generate_email_text" class="anchor" href="#generate_email_text" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>generate_email_text</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_login_ticket" class="anchor" href="#get_login_ticket" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_login_ticket</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_dtc_login_ticket" class="anchor" href="#get_dtc_login_ticket" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_dtc_login_ticket</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="request_auth_code" class="anchor" href="#request_auth_code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>request_auth_code</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="request_auth_code_sso" class="anchor" href="#request_auth_code_sso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>request_auth_code_sso</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="request_pin_code" class="anchor" href="#request_pin_code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>request_pin_code</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="request_lens_pin_code" class="anchor" href="#request_lens_pin_code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>request_lens_pin_code</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h3>
+<a id="session-management" class="anchor" href="#session-management" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Session Management</h3>
+
+<p>These methods enable you to manage technician sessions.</p>
+
+<p>Note: The <code>auth_code</code> parameter enables you to use these methods without logging in to Rescue.</p>
+
+<h4>
+<a id="get_session" class="anchor" href="#get_session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_session</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="start_session" class="anchor" href="#start_session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>start_session</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="hold_session" class="anchor" href="#hold_session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>hold_session</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="transfer_session" class="anchor" href="#transfer_session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>transfer_session</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="close_session" class="anchor" href="#close_session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>close_session</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="cancel_action" class="anchor" href="#cancel_action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>cancel_action</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="is_any_tech_available_on_channel" class="anchor" href="#is_any_tech_available_on_channel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>is_any_tech_available_on_channel</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h3>
+<a id="reporting" class="anchor" href="#reporting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reporting</h3>
+
+<p>These methods retrieve information for generating reports.</p>
+
+<p>You can specify what information you need and how to display that information in your reports.</p>
+
+<p><strong>Important:</strong> Although the <code>auth_code</code> parameter is available for all reporting methods, you cannot generate reports without logging in to Rescue.</p>
+
+<h4>
+<a id="get_chat" class="anchor" href="#get_chat" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_chat</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_note" class="anchor" href="#get_note" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_note</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_report" class="anchor" href="#get_report" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_report</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_report_area" class="anchor" href="#get_report_area" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_report_area</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_report_area" class="anchor" href="#set_report_area" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_report_area</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_date_format" class="anchor" href="#get_date_format" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_date_format</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_date_format" class="anchor" href="#set_date_format" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_date_format</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_delimiter" class="anchor" href="#get_delimiter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_delimiter</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_delimiter" class="anchor" href="#set_delimiter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_delimiter</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_output" class="anchor" href="#get_output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_output</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_output" class="anchor" href="#set_output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_output</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_report_date" class="anchor" href="#get_report_date" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_report_date</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_report_date" class="anchor" href="#set_report_date" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_report_date</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_report_time" class="anchor" href="#get_report_time" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_report_time</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_report_time" class="anchor" href="#set_report_time" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_report_time</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="get_time_zone" class="anchor" href="#get_time_zone" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>get_time_zone</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h4>
+<a id="set_time_zone" class="anchor" href="#set_time_zone" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>set_time_zone</code>
+</h4>
+
+<p><em>Not Implemented.</em></p>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h2>
+
+<p>After checking out the repo, run <code>bin/setup</code> to install dependencies. Then, run <code>rake test</code> to run the tests. You can also run <code>bin/console</code> for an interactive prompt that will allow you to experiment.</p>
+
+<p>To install this gem onto your local machine, run <code>bundle exec rake install</code>. To release a new version, update the version number in <code>version.rb</code>, and then run <code>bundle exec rake release</code>, which will create a git tag for the version, push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>.</p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/tstachl/logmein-rescue">https://github.com/tstachl/logmein-rescue</a>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the <a href="http://contributor-covenant.org">Contributor Covenant</a> code of conduct.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>The gem is available as open source under the terms of the <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/tstachl">tstachl</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
